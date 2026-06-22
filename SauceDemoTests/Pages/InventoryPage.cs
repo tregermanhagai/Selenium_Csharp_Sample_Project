@@ -20,4 +20,7 @@ public class InventoryPage
     public string GetPageTitle() => PageTitle.Text;
 
     public int GetItemCount() => Items.Count;
+
+    public void ClickProduct(string productName) =>
+        _driver.FindElement(By.LinkText(productName)).Click();
 }
