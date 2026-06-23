@@ -1,11 +1,12 @@
 using OpenQA.Selenium;
+using SauceDemoTests.Helpers;
 
 namespace SauceDemoTests.Pages;
 
 public class LoginPage
 {
     private readonly IWebDriver _driver;
-    private const string Url = "https://www.saucedemo.com/";
+    private string Url => Config.BaseUrl;
 
     private IWebElement UsernameInput => _driver.FindElement(By.Id("user-name"));
     private IWebElement PasswordInput => _driver.FindElement(By.Id("password"));

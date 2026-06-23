@@ -25,7 +25,7 @@ public class ClickProductsTests
         _productDetailPage = new ProductDetailPage(_driver);
 
         _loginPage.NavigateTo();
-        _loginPage.Login("standard_user", "secret_sauce");
+        _loginPage.Login(Config.StandardUser, Config.Password);
     }
 
     [TearDown]

@@ -35,7 +35,7 @@ public class LoginTests
     [Description("Valid credentials redirect to the inventory page with products listed")]
     public void Login_WithValidCredentials_RedirectsToInventoryPage()
     {
-        _loginPage.Login("standard_user", "secret_sauce");
+        _loginPage.Login(Config.StandardUser, Config.Password);
 
         Assert.Multiple(() =>
         {
@@ -49,7 +49,7 @@ public class LoginTests
     [Description("Wrong password shows an error message")]
     public void Login_WithInvalidPassword_ShowsErrorMessage()
     {
-        _loginPage.Login("standard_user", "wrong_password");
+        _loginPage.Login(Config.StandardUser, "wrong_password");
 
         Assert.That(_loginPage.HasError(), Is.True);
         Assert.That(_loginPage.GetErrorText(), Does.Contain("Username and password do not match"));
@@ -59,7 +59,7 @@ public class LoginTests
     [Description("Locked-out user sees a specific lock message")]
     public void Login_WithLockedOutUser_ShowsLockedMessage()
     {
-        _loginPage.Login("locked_out_user", "secret_sauce");
+        _loginPage.Login(Config.LockedOutUser, Config.Password);
 
         Assert.That(_loginPage.HasError(), Is.True);
         Assert.That(_loginPage.GetErrorText(), Does.Contain("locked out"));
@@ -79,7 +79,7 @@ public class LoginTests
     [Description("Username filled but password empty prompts for password")]
     public void Login_WithMissingPassword_ShowsPasswordRequiredError()
     {
-        _loginPage.Login("standard_user", string.Empty);
+        _loginPage.Login(Config.StandardUser, string.Empty);
 
         Assert.That(_loginPage.HasError(), Is.True);
         Assert.That(_loginPage.GetErrorText(), Does.Contain("Password is required"));

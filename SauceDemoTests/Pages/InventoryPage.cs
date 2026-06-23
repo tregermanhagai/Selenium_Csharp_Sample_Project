@@ -1,11 +1,12 @@
 using OpenQA.Selenium;
+using SauceDemoTests.Helpers;
 
 namespace SauceDemoTests.Pages;
 
 public class InventoryPage
 {
     private readonly IWebDriver _driver;
-    private const string ExpectedUrl = "https://www.saucedemo.com/inventory.html";
+    private string ExpectedUrl => $"{Config.BaseUrl}/inventory.html";
 
     private IWebElement PageTitle => _driver.FindElement(By.CssSelector(".title"));
     private IReadOnlyList<IWebElement> Items => _driver.FindElements(By.CssSelector(".inventory_item"));
